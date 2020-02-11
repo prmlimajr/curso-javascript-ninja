@@ -42,7 +42,7 @@
   minúsculo por "0" (número zero). Mostre o resultado no console:
   */
   console.log( '\nTrocando de "D" a "h" por "0":' );
-  console.log(text.replace(/[D-Za-h]/g, '0'))
+  console.log(text.replace(/[D-Hd-h]/g, '0'))
 
   /*
   Substitua todos os "A" (maiúsculos ou minúsculos) por "4".
@@ -56,7 +56,9 @@
   o método `toUpperCase()`. Mostre o resultado no console:
   */
   console.log( '\n"O Centauro de Luvas" em caixa alta:' );
-  console.log(text.toUpperCase(/O Centauro de Luvas/))
+  console.log(text.replace(/O Centauro de Luvas/g, function(phrase){
+    return phrase.toUpperCase()
+  }))
 
   /*
   Agora iremos substituir as datas no formato "13 de junho de 1804" para
@@ -124,6 +126,8 @@
   Mostre a regex no console.
   */
   console.log( '\nRegex que vai fazer o match com as datas do texto:' );
+  var regexDate = /([0-9][0-9]) de (junho|julho) de ([0-9][0-9][0-9][0-9])/g
+  console.log(regexDate)
   
 
   /*
@@ -134,6 +138,9 @@
   console o resultado.
   */
   console.log( '\nReplace de datas:' );
-  // ?
+  function replaceDate(regex, day, month, year){
+    return `${day}/${getMonthNumber(month)}/${year}`
+  }
+  console.log(text.replace(regexDate, replaceDate))
 
 })()
